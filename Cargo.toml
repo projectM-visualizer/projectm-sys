@@ -16,4 +16,4 @@ links = "projectm"
 
 [build-dependencies]
 cmake = "0.1.48"
-bindgen = "0.60.1"
+# bindgen = "0.60.1"
