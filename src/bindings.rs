@@ -519,14 +519,12 @@ pub struct projectm_settings_s {
     pub window_width: ::std::os::raw::c_int,
     #[doc = "!< Height of the rendering viewport."]
     pub window_height: ::std::os::raw::c_int,
-    #[doc = "!< Path to a preset playlist in XML format to be loaded. Use FLAG_DISABLE_PLAYLIST_LOAD to skip loading a playlist."]
-    pub preset_url: *mut ::std::os::raw::c_char,
-    #[doc = "!< Path to the \"title\" font that is used to render the preset name."]
-    pub title_font_url: *mut ::std::os::raw::c_char,
-    #[doc = "!< Path to the \"menu\" font that is used to render the built-in on-screen menu."]
-    pub menu_font_url: *mut ::std::os::raw::c_char,
-    #[doc = "!< Path to data files like default fonts and presets."]
-    pub data_dir: *mut ::std::os::raw::c_char,
+    #[doc = "!< Path with preset files to be loaded into the playlist. Use FLAG_DISABLE_PLAYLIST_LOAD to skip automatic loading of presets."]
+    pub preset_path: *mut ::std::os::raw::c_char,
+    #[doc = "!< Additional path with texture files for use in presets."]
+    pub texture_path: *mut ::std::os::raw::c_char,
+    #[doc = "!< Path to data files like default textures and presets."]
+    pub data_path: *mut ::std::os::raw::c_char,
     #[doc = "!< Display duration for each preset in seconds."]
     pub preset_duration: f64,
     #[doc = "!< Blend-over duration between two presets in seconds."]
@@ -552,7 +550,7 @@ pub struct projectm_settings_s {
 fn bindgen_test_layout_projectm_settings_s() {
     assert_eq!(
         ::std::mem::size_of::<projectm_settings_s>(),
-        104usize,
+        96usize,
         concat!("Size of: ", stringify!(projectm_settings_s))
     );
     assert_eq!(
@@ -662,74 +660,57 @@ fn bindgen_test_layout_projectm_settings_s() {
         );
     }
     test_field_window_height();
-    fn test_field_preset_url() {
+    fn test_field_preset_path() {
         assert_eq!(
             unsafe {
                 let uninit = ::std::mem::MaybeUninit::<projectm_settings_s>::uninit();
                 let ptr = uninit.as_ptr();
-                ::std::ptr::addr_of!((*ptr).preset_url) as usize - ptr as usize
+                ::std::ptr::addr_of!((*ptr).preset_path) as usize - ptr as usize
             },
             24usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
                 "::",
-                stringify!(preset_url)
+                stringify!(preset_path)
             )
         );
     }
-    test_field_preset_url();
-    fn test_field_title_font_url() {
+    test_field_preset_path();
+    fn test_field_texture_path() {
         assert_eq!(
             unsafe {
                 let uninit = ::std::mem::MaybeUninit::<projectm_settings_s>::uninit();
                 let ptr = uninit.as_ptr();
-                ::std::ptr::addr_of!((*ptr).title_font_url) as usize - ptr as usize
+                ::std::ptr::addr_of!((*ptr).texture_path) as usize - ptr as usize
             },
             32usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
                 "::",
-                stringify!(title_font_url)
+                stringify!(texture_path)
             )
         );
     }
-    test_field_title_font_url();
-    fn test_field_menu_font_url() {
+    test_field_texture_path();
+    fn test_field_data_path() {
         assert_eq!(
             unsafe {
                 let uninit = ::std::mem::MaybeUninit::<projectm_settings_s>::uninit();
                 let ptr = uninit.as_ptr();
-                ::std::ptr::addr_of!((*ptr).menu_font_url) as usize - ptr as usize
+                ::std::ptr::addr_of!((*ptr).data_path) as usize - ptr as usize
             },
             40usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
                 "::",
-                stringify!(menu_font_url)
+                stringify!(data_path)
             )
         );
     }
-    test_field_menu_font_url();
-    fn test_field_data_dir() {
-        assert_eq!(
-            unsafe {
-                let uninit = ::std::mem::MaybeUninit::<projectm_settings_s>::uninit();
-                let ptr = uninit.as_ptr();
-                ::std::ptr::addr_of!((*ptr).data_dir) as usize - ptr as usize
-            },
-            48usize,
-            concat!(
-                "Offset of field: ",
-                stringify!(projectm_settings_s),
-                "::",
-                stringify!(data_dir)
-            )
-        );
-    }
-    test_field_data_dir();
+    test_field_data_path();
     fn test_field_preset_duration() {
         assert_eq!(
             unsafe {
@@ -737,7 +718,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).preset_duration) as usize - ptr as usize
             },
-            56usize,
+            48usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -754,7 +735,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).soft_cut_duration) as usize - ptr as usize
             },
-            64usize,
+            56usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -771,7 +752,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).hard_cut_duration) as usize - ptr as usize
             },
-            72usize,
+            64usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -788,7 +769,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).hard_cut_enabled) as usize - ptr as usize
             },
-            80usize,
+            72usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -805,7 +786,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).hard_cut_sensitivity) as usize - ptr as usize
             },
-            84usize,
+            76usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -822,7 +803,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).beat_sensitivity) as usize - ptr as usize
             },
-            88usize,
+            80usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -839,7 +820,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).aspect_correction) as usize - ptr as usize
             },
-            92usize,
+            84usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -856,7 +837,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).easter_egg) as usize - ptr as usize
             },
-            96usize,
+            88usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -873,7 +854,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).shuffle_enabled) as usize - ptr as usize
             },
-            100usize,
+            92usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -890,7 +871,7 @@ fn bindgen_test_layout_projectm_settings_s() {
                 let ptr = uninit.as_ptr();
                 ::std::ptr::addr_of!((*ptr).soft_cut_ratings_enabled) as usize - ptr as usize
             },
-            101usize,
+            93usize,
             concat!(
                 "Offset of field: ",
                 stringify!(projectm_settings_s),
@@ -1151,34 +1132,12 @@ extern "C" {
     );
 }
 extern "C" {
-    #[doc = " @brief Reset the projectM OpenGL renderer."]
-    #[doc = ""]
-    #[doc = " <p>Required if anything invalidates the state of the current OpenGL context projectM is rendering to.</p>"]
-    #[doc = ""]
-    #[doc = " <p>For resize events, it is sufficient to call projectm_set_window_size()</p>"]
-    #[doc = ""]
-    #[doc = " @param instance The projectM instance handle."]
-    pub fn projectm_reset_gl(instance: projectm_handle);
-}
-extern "C" {
     #[doc = " @brief Reloads all textures."]
     #[doc = ""]
     #[doc = " Also resets the OpenGL renderer without changing the viewport size. Useful if preset paths were changed."]
     #[doc = ""]
     #[doc = " @param instance The projectM instance handle."]
     pub fn projectm_reset_textures(instance: projectm_handle);
-}
-extern "C" {
-    #[doc = " @brief Returns the current title text."]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @return The currently set title text."]
-    pub fn projectm_get_title(instance: projectm_handle) -> *const ::std::os::raw::c_char;
-}
-extern "C" {
-    #[doc = " @brief Sets the current title text and displays it."]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @param title The title text to display."]
-    pub fn projectm_set_title(instance: projectm_handle, title: *const ::std::os::raw::c_char);
 }
 extern "C" {
     #[doc = " @brief Renders a single frame."]
@@ -1249,6 +1208,21 @@ extern "C" {
     #[doc = " @param instance The projectM instance handle."]
     #[doc = " @param size The new size of the render texture. Must be a power of 2."]
     pub fn projectm_set_texture_size(instance: projectm_handle, size: size_t);
+}
+extern "C" {
+    #[doc = " @brief Sets the beat sensitivity."]
+    #[doc = ""]
+    #[doc = " The beat sensitivity to be used."]
+    #[doc = ""]
+    #[doc = " @param instance The projectM instance handle."]
+    #[doc = " @param sensitivity The sensitivity setting."]
+    pub fn projectm_set_beat_sensitivity(instance: projectm_handle, sensitivity: f32);
+}
+extern "C" {
+    #[doc = " @brief Returns the beat sensitivity."]
+    #[doc = " @param instance The projectM instance handle."]
+    #[doc = " @return The current sensitivity setting."]
+    pub fn projectm_get_beat_sensitivity(instance: projectm_handle) -> f32;
 }
 extern "C" {
     #[doc = " @brief Returns the minimum display time before a hard cut can happen."]
@@ -1357,26 +1331,16 @@ extern "C" {
     pub fn projectm_get_preset_path(instance: projectm_handle) -> *const ::std::os::raw::c_char;
 }
 extern "C" {
-    #[doc = " @brief Returns the path and filename of the font used to render the title overlay text."]
+    #[doc = " @brief Returns the search path for additional textures."]
     #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @return The path and filename of the title text font."]
-    pub fn projectm_get_title_font_filename(
-        instance: projectm_handle,
-    ) -> *const ::std::os::raw::c_char;
-}
-extern "C" {
-    #[doc = " @brief Returns the path and filename of the font used to render the menu overlay text."]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @return The path and filename of the menu text font."]
-    pub fn projectm_get_menu_font_filename(
-        instance: projectm_handle,
-    ) -> *const ::std::os::raw::c_char;
+    #[doc = " @return The path used to search for additional textures."]
+    pub fn projectm_get_texture_path(instance: projectm_handle) -> *const ::std::os::raw::c_char;
 }
 extern "C" {
     #[doc = " @brief Returns the path projectM uses to search for additional data."]
     #[doc = " @param instance The projectM instance handle."]
     #[doc = " @return The data dir path."]
-    pub fn projectm_get_data_dir_path(instance: projectm_handle) -> *const ::std::os::raw::c_char;
+    pub fn projectm_get_data_path(instance: projectm_handle) -> *const ::std::os::raw::c_char;
 }
 extern "C" {
     #[doc = " @brief Enabled or disables aspect ratio correction in presets that support it."]
@@ -1462,34 +1426,6 @@ extern "C" {
     pub fn projectm_touch_destroy_all(instance: projectm_handle);
 }
 extern "C" {
-    #[doc = " @brief Sets the help menu text."]
-    #[doc = ""]
-    #[doc = " The help menu will be toggled if the key mapped to PROJECTM_K_F1 is pressed."]
-    #[doc = ""]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @param help_text The help text to be displayed."]
-    pub fn projectm_set_help_text(
-        instance: projectm_handle,
-        help_text: *const ::std::os::raw::c_char,
-    );
-}
-extern "C" {
-    #[doc = " @brief Displays a short message in the center of the rendering area for a few seconds."]
-    #[doc = ""]
-    #[doc = " <p>Useful to display song titles and changed audio settings. Used internally by projectM to display setting"]
-    #[doc = " changes like preset lock.</p>"]
-    #[doc = ""]
-    #[doc = " <p>Only one toast message is shown at a time. If this method is called while another message is shown, it"]
-    #[doc = " will be replaced immediately.</p>"]
-    #[doc = ""]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @param toast_message The message to display."]
-    pub fn projectm_set_toast_message(
-        instance: projectm_handle,
-        toast_message: *const ::std::os::raw::c_char,
-    );
-}
-extern "C" {
     #[doc = " @brief Returns a structure with the current projectM settings."]
     #[doc = " @param instance The projectM instance handle."]
     #[doc = " @return A struct with all currently used settings."]
@@ -1529,11 +1465,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[doc = " @brief Populates the on-screen preset menu."]
-    #[doc = " @param instance The projectM instance handle."]
-    pub fn projectm_populate_preset_menu(instance: projectm_handle);
-}
-extern "C" {
     #[doc = " @brief Removes a preset from the playlist."]
     #[doc = " @param instance The projectM instance handle."]
     #[doc = " @param index The  preset index to remove from the playlist."]
@@ -1561,17 +1492,6 @@ extern "C" {
     pub fn projectm_is_preset_locked(instance: projectm_handle) -> bool;
 }
 extern "C" {
-    #[doc = " @brief Returns whether the search text input mode is active or not."]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @param no_minimum_length If set to true, will return true if at least one character has been typed, otherwise"]
-    #[doc = "                          a minimum length of three characters is required."]
-    #[doc = " @return True if text input mode is active, false otherwise."]
-    pub fn projectm_is_text_input_active(
-        instance: projectm_handle,
-        no_minimum_length: bool,
-    ) -> bool;
-}
-extern "C" {
     #[doc = " @brief Returns the playlist index for the given preset name."]
     #[doc = ""]
     #[doc = " If the preset name is found multiple times, the first matching index will be returned."]
@@ -1594,37 +1514,6 @@ extern "C" {
         preset_name: *const ::std::os::raw::c_char,
         hard_cut: bool,
     );
-}
-extern "C" {
-    #[doc = " @brief Returns the current preset search text."]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @return The current search text used to search for presets in the playlist."]
-    pub fn projectm_get_search_text(instance: projectm_handle) -> *const ::std::os::raw::c_char;
-}
-extern "C" {
-    #[doc = " @brief Sets the current preset search text."]
-    #[doc = " @param instance The projectM instance handle."]
-    #[doc = " @param search_text The search text used to search for presets in the current playlist."]
-    pub fn projectm_set_search_text(
-        instance: projectm_handle,
-        search_text: *const ::std::os::raw::c_char,
-    );
-}
-extern "C" {
-    #[doc = " @brief Deletes one character from the preset search text."]
-    #[doc = ""]
-    #[doc = " This is equivalent to pressing DEL in a text box."]
-    #[doc = ""]
-    #[doc = " @param instance The projectM instance handle."]
-    pub fn projectm_delete_search_text(instance: projectm_handle);
-}
-extern "C" {
-    #[doc = " @brief Deletes the whole search text."]
-    #[doc = ""]
-    #[doc = " This will effectively leave preset search mode."]
-    #[doc = ""]
-    #[doc = " @param instance The projectM instance handle."]
-    pub fn projectm_reset_search_text(instance: projectm_handle);
 }
 extern "C" {
     #[doc = " @brief Returns the currently selected preset index."]
@@ -1896,4 +1785,12 @@ extern "C" {
         count: ::std::os::raw::c_uint,
         channels: projectm_channels,
     );
+}
+extern "C" {
+    #[doc = " @brief Writes a .bmp framedump after rendering the next main texture, before shaders are applied."]
+    #[doc = ""]
+    #[doc = " The image is written to the current working directory and is named \"frame_texture_contents-[date].bmp\"."]
+    #[doc = ""]
+    #[doc = " @param instance The projectM instance handle."]
+    pub fn projectm_write_debug_image_on_next_frame(instance: projectm_handle);
 }
