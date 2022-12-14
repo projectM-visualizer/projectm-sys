@@ -1,5 +1,6 @@
 emcc "-s" "USE_SDL=2" \
     "-s" "DISABLE_EXCEPTION_CATCHING=true" \
+    # "-s" "NO_DISABLE_EXCEPTION_CATCHING" \
     "-s" "ERROR_ON_UNDEFINED_SYMBOLS=0" \
     "-s" "NO_EXIT_RUNTIME=1" \
     "-s" "MIN_WEBGL_VERSION=2" \
