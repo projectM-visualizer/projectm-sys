@@ -1,6 +1,6 @@
 [package]
 name = "projectm-sys"
-version = "0.1.1"
+version = "1.0.0"
 edition = "2021"
 rust-version = "1.59"
 authors = ["AnomieVision <anomievision@gmail.com.com>"]
@@ -15,5 +15,5 @@ links = "projectm"
 [dependencies]
 
 [build-dependencies]
-cmake = "0.1.48"
-# bindgen = "0.60.1"
+cmake = "0.1.49"
+bindgen = "0.63.0"
