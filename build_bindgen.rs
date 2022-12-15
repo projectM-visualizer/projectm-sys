@@ -6,9 +6,8 @@ pub fn bindgen() {
   let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
   let out_path = Path::new(".").join("src");
   
-  // Get header based on features
   fn get_header() -> String {
-    if cfg!(feature = "enable-playlist") {
+    if cfg!(feature = "playlist") {
       return "bindgen/playlist.h".to_string().to_string()
     } else {
       return "bindgen/default.h".to_string().to_string()

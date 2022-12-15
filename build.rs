@@ -7,25 +7,20 @@ fn main() {
   println!("cargo:rerun-if-changed=build.rs");
   println!("cargo:rerun-if-changed=wrapper.h");
 
-  // Download github submodule
   if !Path::new("projectm/src").exists() {
     let _ = Command::new("git")
             .args(&["submodule", "update", "--init"])
             .status();
   }
 
-  // Features
-
-  // --enable-playlist
+  // Feature: enable-playlist
   fn enable_playlist() -> String {
-    if cfg!(feature = "enable-playlist") {
+    if cfg!(feature = "playlist") {
       return "ON".to_string().to_string()
     } else {
       return "OFF".to_string().to_string()
     }
   }
-
-  println!("{:?}", enable_playlist());
   
   #[cfg(target_os = "windows")]
   let dst = cmake::Config::new("projectm")
@@ -54,12 +49,12 @@ fn main() {
   if Ok("release".to_owned()) == env::var("PROFILE") {
     println!("cargo:rustc-link-lib=dylib=projectM");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=dylib=projectMd");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
   }
 
@@ -67,12 +62,12 @@ fn main() {
   if Ok("release".to_owned()) == env::var("PROFILE") {
     println!("cargo:rustc-link-lib=dylib=projectM");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=dylib=projectMd");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
   }
 
@@ -80,12 +75,12 @@ fn main() {
   if Ok("release".to_owned()) == env::var("PROFILE") {
     println!("cargo:rustc-link-lib=dylib=projectM");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=dylib=projectMd");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
   }
   
@@ -93,12 +88,12 @@ fn main() {
   if Ok("release".to_owned()) == env::var("PROFILE") {
     println!("cargo:rustc-link-lib=static=projectM");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=static=projectMd");
 
-    #[cfg(feature = "enable-playlist")]
+    #[cfg(feature = "playlist")]
     println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
   }
   
