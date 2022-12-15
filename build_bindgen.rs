@@ -1,10 +1,10 @@
-use std::{path::{Path, PathBuf}, env};
+use std::{path::{PathBuf}, env};
 
 pub fn bindgen() {
   println!("cargo:rerun-if-changed=wrapper.h");
   
   let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
-  let out_path = Path::new(".").join("src");
+  let out_path = out_dir.join("bindings.rs");
   
   fn get_header() -> String {
     if cfg!(feature = "playlist") {
@@ -23,6 +23,6 @@ pub fn bindgen() {
       .expect("Unable to generate bindings");
 
   bindings
-      .write_to_file(out_path.join("bindings.rs"))
+      .write_to_file(out_path)
       .expect("Couldn't write bindings!");
 }

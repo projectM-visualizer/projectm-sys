@@ -4,9 +4,6 @@ mod build_bindgen;
 use crate::build_bindgen::bindgen;
 
 fn main() {
-  println!("cargo:rerun-if-changed=build.rs");
-  println!("cargo:rerun-if-changed=wrapper.h");
-
   if !Path::new("projectm/src").exists() {
     let _ = Command::new("git")
             .args(&["submodule", "update", "--init"])
