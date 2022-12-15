@@ -92,7 +92,7 @@ development files. To build projectM, both binaries and development files need t
 cargo.toml
 
 [dependencies]
-projectm-sys = "*" # recommended until project is stable
+projectm-sys = { version = "1.0", features = [] }   # Available features: playlist
 ```
 ```
 main.rs
@@ -100,7 +100,7 @@ main.rs
 use projectm_sys;
 
 let projectm_handle = unsafe {
-    projectm_rs::projectm_create_settings(&settings, 0)
+    projectm_sys::projectm_create_settings(&settings)
 };
 ```
 
