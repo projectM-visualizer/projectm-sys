@@ -17,3 +17,7 @@ links = "projectm"
 [build-dependencies]
 cmake = "0.1.49"
 bindgen = "0.63.0"
+
+[features]
+default = ["enable-playlist"]
+enable-playlist = []
