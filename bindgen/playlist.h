@@ -1,0 +1,1 @@
+#include "libprojectM/playlist.h"
