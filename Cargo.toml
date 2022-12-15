@@ -20,4 +20,4 @@ bindgen = "0.63.0"
 
 [features]
 default = []
-enable-playlist = []
+playlist = []

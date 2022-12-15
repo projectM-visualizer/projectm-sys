@@ -24,7 +24,7 @@ fn main() {
   
   #[cfg(target_os = "windows")]
   let dst = cmake::Config::new("projectm")
-                          .define("ENABLE_PLAYLIST", enable_playlist)
+                          .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build(); 
 
   #[cfg(target_os = "linux")]
@@ -34,12 +34,12 @@ fn main() {
 
   #[cfg(target_os = "ios")]
   let dst = cmake::Config::new("projectm")
-                          .define("ENABLE_PLAYLIST", enable_playlist)
+                          .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build();
 
   #[cfg(target_os = "emscripten")]
   let dst = cmake::Config::new("projectm")
-                          .define("ENABLE_PLAYLIST", enable_playlist)
+                          .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .define("ENABLE_EMSCRIPTEN", "ON")
                           .build();
 
