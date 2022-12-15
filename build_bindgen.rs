@@ -1,4 +1,4 @@
-use std::{path::{Path, PathBuf}, env};
+use std::{path::{PathBuf}, env};
 
 pub fn bindgen() {
   println!("cargo:rerun-if-changed=wrapper.h");
