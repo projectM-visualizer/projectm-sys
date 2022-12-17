@@ -47,12 +47,12 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=projectM");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=dylib=projectMd");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
   }
 
   #[cfg(target_os = "linux")]
@@ -60,12 +60,12 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=projectM");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=dylib=projectMd");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
   }
 
   #[cfg(target_os = "ios")]
@@ -73,12 +73,12 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=projectM");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=dylib=projectMd");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
   }
   
   #[cfg(target_os = "emscripten")]
@@ -86,12 +86,12 @@ fn main() {
     println!("cargo:rustc-link-lib=static=projectM");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlist");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlist");
   } else {
     println!("cargo:rustc-link-lib=static=projectMd");
 
     #[cfg(feature = "playlist")]
-    println!("cargo:rustc-link-lib=dylib=libprojectM_playlistd");
+    println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
   }
   
   bindgen()
