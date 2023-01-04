@@ -1,12 +1,19 @@
+#[macro_use]
+extern crate lazy_static;
+
 use std::{env, path::Path, process::Command};
 
 mod build_bindgen;
 use crate::build_bindgen::bindgen;
 
+lazy_static! {
+  static ref PROJECTM_BUILD: String = format!("{}/projectm", env::var("OUT_DIR").unwrap());
+}
+
 fn main() {
-  if !Path::new("projectm/src").exists() {
+  if !Path::new(PROJECTM_BUILD.as_str()).exists() {
     let _ = Command::new("git")
-            .args(&["submodule", "update", "--init"])
+            .args(&["clone", "--depth=1", "--branch", "master", "https://github.com/projectM-visualizer/projectm.git", &PROJECTM_BUILD])
             .status();
   }
 
@@ -20,22 +27,22 @@ fn main() {
   }
   
   #[cfg(target_os = "windows")]
-  let dst = cmake::Config::new("projectm")
+  let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build(); 
 
   #[cfg(target_os = "linux")]
-  let dst = cmake::Config::new("projectm")
+  let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build();
 
   #[cfg(target_os = "ios")]
-  let dst = cmake::Config::new("projectm")
+  let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build();
 
   #[cfg(target_os = "emscripten")]
-  let dst = cmake::Config::new("projectm")
+  let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .define("ENABLE_EMSCRIPTEN", "ON")
                           .build();
