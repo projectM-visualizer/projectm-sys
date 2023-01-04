@@ -13,19 +13,19 @@
 
 <br />
 
-<h3 align="center">ProjectM-sys</h3>
+<h3 align="center">projectM-sys</h3>
 
   <p align="center">
     Rust bindings for <a href="https://github.com/projectM-visualizer/projectm" target="_blank">ProjectM</a>, built using Bindgen
     <br />
     <br />
-    <a href="https://docs.rs/projectm-sys/0.1.4/projectm_rs/" target="_blank">Docs</a>
+    <a href="https://docs.rs/projectm-sys/latest" target="_blank">Docs</a>
     ·
     <a href="https://github.com/projectM-visualizer/frontend-sdl2-rust" target="_blank">Example</a>
     ·
-    <a href="https://github.com/anomievision/projectm-sys/issues" target="_blank">Report Bug</a>
+    <a href="https://github.com/projectM-visualizer/projectm-sys/issues" target="_blank">Report Bug</a>
     ·
-    <a href="https://github.com/anomievision/projectm-sys/issues" target="_blank">Request Feature</a>
+    <a href="https://github.com/projectM-visualizer/projectm-sys/issues" target="_blank">Request Feature</a>
   </p>
 </div>
 
@@ -94,15 +94,6 @@ cargo.toml
 [dependencies]
 projectm-sys = { version = "1.0", features = [] }   # Available features: playlist
 ```
-```
-main.rs
-
-use projectm_sys;
-
-let projectm_handle = unsafe {
-    projectm_sys::projectm_create_settings(&settings)
-};
-```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,16 +140,16 @@ Blaquewithaq (Discord: SoFloppy#1289) - [@anomievision](https://twitter.com/anom
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/anomievision/projectm-sys.svg?style=for-the-badge
-[contributors-url]: https://github.com/anomievision/projectm-sys/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/anomievision/projectm-sys.svg?style=for-the-badge
-[forks-url]: https://github.com/anomievision/projectm-sys/network/members
-[stars-shield]: https://img.shields.io/github/stars/anomievision/projectm-sys.svg?style=for-the-badge
-[stars-url]: https://github.com/anomievision/projectm-sys/stargazers
-[issues-shield]: https://img.shields.io/github/issues/anomievision/projectm-sys.svg?style=for-the-badge
-[issues-url]: https://github.com/anomievision/projectm-sys/issues
-[license-shield]: https://img.shields.io/github/license/anomievision/projectm-sys.svg?style=for-the-badge
-[license-url]: https://github.com/anomievision/projectm-sys/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/projectM-visualizer/projectm-sys.svg?style=for-the-badge
+[contributors-url]: https://github.com/projectM-visualizer/projectm-sys/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/projectM-visualizer/projectm-sys.svg?style=for-the-badge
+[forks-url]: https://github.com/projectM-visualizer/projectm-sys/network/members
+[stars-shield]: https://img.shields.io/github/stars/projectM-visualizer/projectm-sys.svg?style=for-the-badge
+[stars-url]: https://github.com/projectM-visualizer/projectm-sys/stargazers
+[issues-shield]: https://img.shields.io/github/issues/projectM-visualizer/projectm-sys.svg?style=for-the-badge
+[issues-url]: https://github.com/projectM-visualizer/projectm-sys/issues
+[license-shield]: https://img.shields.io/github/license/projectM-visualizer/projectm-sys.svg?style=for-the-badge
+[license-url]: https://github.com/projectM-visualizer/projectm-sys/blob/master/LICENSE
 [crates-shield]: https://img.shields.io/crates/v/projectm-sys?style=for-the-badge
 [crates-url]: https://crates.io/crates/projectm-sys
 [crates-dl-shield]: https://img.shields.io/crates/d/projectm-sys?style=for-the-badge
