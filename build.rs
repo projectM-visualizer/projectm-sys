@@ -36,6 +36,11 @@ fn main() {
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build();
 
+  #[cfg(target_os = "macos")]
+  let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
+                          .define("ENABLE_PLAYLIST", enable_playlist().as_str())
+                          .build(); 
+
   #[cfg(target_os = "ios")]
   let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
