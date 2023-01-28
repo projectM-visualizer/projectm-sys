@@ -13,7 +13,7 @@ lazy_static! {
 fn main() {
   if !Path::new(PROJECTM_BUILD.as_str()).exists() {
     let _ = Command::new("git")
-            .args(&["clone", "--depth=1", "--branch", "master", "https://github.com/projectM-visualizer/projectm.git", &PROJECTM_BUILD])
+            .args(&["clone", "--depth=1", "--branch", "v4.0.0-rc1", "https://github.com/projectM-visualizer/projectm.git", &PROJECTM_BUILD])
             .status();
   }
 
@@ -36,7 +36,7 @@ fn main() {
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build();
 
-  #[cfg(target_os = "ios")]
+  #[cfg(target_os = "macos")]
   let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
                           .define("ENABLE_PLAYLIST", enable_playlist().as_str())
                           .build();
@@ -75,7 +75,7 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
   }
 
-  #[cfg(target_os = "ios")]
+  #[cfg(target_os = "macos")]
   if Ok("release".to_owned()) == env::var("PROFILE") {
     println!("cargo:rustc-link-lib=dylib=projectM");
 
