@@ -42,6 +42,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#building">Building</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#support">Support</a></li>
@@ -98,6 +99,19 @@ projectm-sys = { version = "1.0", features = [] }   # Available features: playli
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- BUILDING EXAMPLES -->
+## Building
+
+<br />
+
+### Windows Platform
+To compile the ProjectM library from source, you are required to set the VCPKG_INSTALLATION_ROOT env variable.
+```powershell
+# Powershell
+$Env:VCPKG_INSTALLATION_ROOT="C:\path\to\vcpkg"; cargo build
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
