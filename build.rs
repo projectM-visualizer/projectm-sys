@@ -14,6 +14,8 @@ fn main() {
     if !Path::new(PROJECTM_BUILD.as_str()).exists() {
         let _ = Command::new("git")
             .args([
+                "-c",
+                "advice.detachedHead=false",
                 "clone",
                 "--depth=1",
                 "--branch",
@@ -35,6 +37,19 @@ fn main() {
 
     #[cfg(target_os = "windows")]
     let dst = cmake::Config::new(PROJECTM_BUILD.as_str())
+        .generator("Visual Studio 17 2022")
+        .define(
+            "CMAKE_TOOLCHAIN_FILE",
+            format!(
+                "{}/scripts/buildsystems/vcpkg.cmake",
+                env::var("VCPKG_INSTALLATION_ROOT").unwrap()
+            ),
+        )
+        .define("VCPKG_TARGET_TRIPLET", "x64-windows-static-md")
+        .define(
+            "CMAKE_MSVC_RUNTIME_LIBRARY",
+            "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
+        )
         .define("ENABLE_PLAYLIST", enable_playlist().as_str())
         .build();
 
