@@ -1,6 +1,6 @@
 [package]
 name = "projectm-sys"
-version = "1.0.6"
+version = "1.0.7"
 edition = "2021"
 rust-version = "1.65"
 authors = ["AnomieVision <anomievision@gmail.com.com>"]
@@ -16,10 +16,10 @@ links = "projectm"
 [dependencies]
 
 [build-dependencies]
-cmake = "0.1.49"
-bindgen = "0.63.0"
+cmake = "0.1.50"
+bindgen = "0.64.0"
 lazy_static = "1.4.0"
 
 [features]
-default = []
+default = ["playlist"]
 playlist = []

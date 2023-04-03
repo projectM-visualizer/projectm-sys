@@ -19,7 +19,7 @@ fn main() {
                 "clone",
                 "--depth=1",
                 "--branch",
-                "v4.0.0-rc1",
+                "v4.0.0",
                 "https://github.com/projectM-visualizer/projectm.git",
                 &PROJECTM_BUILD,
             ])
@@ -73,54 +73,54 @@ fn main() {
 
     #[cfg(target_os = "windows")]
     if Ok("release".to_owned()) == env::var("PROFILE") {
-        println!("cargo:rustc-link-lib=dylib=projectM");
+        println!("cargo:rustc-link-lib=dylib=projectM-4");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlist");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlist");
     } else {
-        println!("cargo:rustc-link-lib=dylib=projectMd");
+        println!("cargo:rustc-link-lib=dylib=projectM-4d");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlistd");
     }
 
     #[cfg(target_os = "linux")]
     if Ok("release".to_owned()) == env::var("PROFILE") {
-        println!("cargo:rustc-link-lib=dylib=projectM");
+        println!("cargo:rustc-link-lib=dylib=libprojectM=4");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlist");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlist");
     } else {
-        println!("cargo:rustc-link-lib=dylib=projectMd");
+        println!("cargo:rustc-link-lib=dylib=projectM-4d");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlistd");
     }
 
     #[cfg(target_os = "macos")]
     if Ok("release".to_owned()) == env::var("PROFILE") {
-        println!("cargo:rustc-link-lib=dylib=projectM");
+        println!("cargo:rustc-link-lib=dylib=projectM-4");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlist");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlist");
     } else {
-        println!("cargo:rustc-link-lib=dylib=projectMd");
+        println!("cargo:rustc-link-lib=dylib=projectM-4d");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlistd");
     }
 
     #[cfg(target_os = "emscripten")]
     if Ok("release".to_owned()) == env::var("PROFILE") {
-        println!("cargo:rustc-link-lib=static=projectM");
+        println!("cargo:rustc-link-lib=static=projectM-4");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlist");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlist");
     } else {
-        println!("cargo:rustc-link-lib=static=projectMd");
+        println!("cargo:rustc-link-lib=static=projectM-4d");
 
         #[cfg(feature = "playlist")]
-        println!("cargo:rustc-link-lib=dylib=projectM_playlistd");
+        println!("cargo:rustc-link-lib=dylib=projectM-4-playlistd");
     }
 
     bindgen()
